@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  jupyter:
+    image: jupyterhub/jupyterhub:1.0.0
+    container_name: jupyterhub
+    command: jupyterhub
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    volumes:
+      - jupyter:/home
+    networks:
+      - shared_network
+
+volumes:
+  jupyter:
+    external: true
+
+networks:
+  shared_network:
+    external: true

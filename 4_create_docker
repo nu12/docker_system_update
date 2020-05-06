@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cd resources/rstudio
+docker-compose up -d
+docker exec -u root rstudio bash -c "useradd -m user"
+docker exec -u root rstudio bash -c "echo 'user:user' | chpasswd"
+docker exec -u root rstudio bash -c "echo 'content' >> /home/user/this_file_should_be_here"
+
+cd ../jupyter
+docker-compose up -d
+docker exec -u root jupyterhub bash -c "pip install notebook"
+docker exec -u root jupyterhub bash -c "useradd -m user"
+docker exec -u root jupyterhub bash -c "echo 'user:user' | chpasswd"
+docker exec -u root jupyterhub bash -c "echo 'content' >> /home/user/this_file_should_be_here"
+
+cd ../portainer
+docker-compose up -d
+
+cd ../gitlab
+docker-compose up -d

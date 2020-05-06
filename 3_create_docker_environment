@@ -1,0 +1,17 @@
+#!/bin/bash
+
+docker volume create portainer_data
+
+docker volume create gitlab_data
+
+docker volume create gitlab_logs
+
+docker volume create gitlab_config
+
+docker volume create gitlab_config
+
+docker volume create jupyter
+
+docker volume create rstudio
+
+docker network create shared_network
