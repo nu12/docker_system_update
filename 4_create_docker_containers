@@ -18,3 +18,9 @@ docker-compose up -d
 
 cd ../gitlab
 docker-compose up -d
+
+cd ../postgres
+docker-compose up -d
+
+cd ../pgadmin
+docker-compose up -d

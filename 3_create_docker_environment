@@ -14,4 +14,8 @@ docker volume create jupyter
 
 docker volume create rstudio
 
+docker volume create postgres
+
+docker volume create pgadmin
+
 docker network create shared_network

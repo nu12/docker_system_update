@@ -6,7 +6,7 @@ services:
     container_name: rstudio
     restart: unless-stopped
     ports:
-      - 8787:8787
+      - 9003:8787
     volumes:
       - rstudio:/home
       - rstudio:/home/rstudio

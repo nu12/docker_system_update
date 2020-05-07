@@ -7,7 +7,7 @@ services:
     command: jupyterhub
     restart: unless-stopped
     ports:
-      - 8000:8000
+      - 9002:8000
     volumes:
       - jupyter:/home
     networks:

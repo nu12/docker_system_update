@@ -7,9 +7,9 @@ services:
     restart: unless-stopped
     hostname: gitlab.example.com
     ports:
-      - '8080:80'
-      - '8081:443'
-      - '8082:22'
+      - '9001:80'
+      - '9081:443'
+      - '9082:22'
     volumes:
       - gitlab_config:/etc/gitlab
       - gitlab_logs:/var/log/gitlab
