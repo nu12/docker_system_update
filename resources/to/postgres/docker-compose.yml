@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+
+  postgres:
+    image: postgres:10.12
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - shared_network
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+    external: true
+
+networks:
+  shared_network:
+    external: true

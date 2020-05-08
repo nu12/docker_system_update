@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:12.10.3-ce.0
+    container_name: gitlab
+    restart: unless-stopped
+    hostname: gitlab.example.com
+    ports:
+      - '9001:80'
+      - '9081:443'
+      - '9082:22'
+    volumes:
+      - gitlab_config:/etc/gitlab
+      - gitlab_logs:/var/log/gitlab
+      - gitlab_data:/var/opt/gitlab
+    networks:
+      - shared_network
+
+volumes:
+  gitlab_config:
+    external: true
+  gitlab_logs:
+    external: true
+  gitlab_data:
+    external: true
+
+networks:
+  shared_network:
+    external: true
