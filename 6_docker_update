@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for CONTAINER in $(docker container ls -q)
+do
+	docker update --memory 3G $CONTAINER
+done
