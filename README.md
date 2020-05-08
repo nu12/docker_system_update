@@ -26,3 +26,43 @@ $ ./0_purge_docker && \
 > ./6_docker_update
  ```
  * Interact with applications using ports 9000-9004
+
+## Updating the system
+
+Since 18.10 is no longer supported, the system can only be downgraded to 18.04 before updating to 20.04.
+
+ * Update source list (replace cosmic with bionic info)
+```shell
+$ sudo sed -i 's/cosmic/bionic/g' /etc/apt/sources.list
+$ sudo sed -i 's/old-releases/archive/g' /etc/apt/sources.list
+```
+
+ * Pin packages
+```shell
+$ sudo echo -e "Package: * \n \
+> Pin: release a=bionic \n \
+> Pin-Priority: 1001" >> /etc/apt/preferences
+```
+
+ * Downgrade
+```shell
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install libnet-dns-sec-perl
+$ sudo apt-get dist-upgrade
+$ cat /etc/os-release
+```
+
+Updated to Docker version 19.03.8. GitLab got unhealthy, however restarting the container solved the issue.
+
+All files in other containers were preserved.
+
+ * Update
+```shell
+$ rm /etc/apt/preferences
+$ sudo apt-get install update-manager-core
+$ sudo apt-get install --reinstall ubuntu-keyring
+$ do-release-upgrade [-d]
+```
+
+Use `-d` if upgrading before the first patch release (July).
