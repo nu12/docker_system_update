@@ -16,7 +16,7 @@ $ git clone https://github.com/nu12/docker_system_update.git
 
  * Run scripts 0-6 (0_purge_docker must be skiped on first iteration)
 
- ```shell
+```shell
 $ ./0_purge_docker && \
 > ./1_install_dependencies && \
 > ./2_install_docker && \
@@ -24,12 +24,14 @@ $ ./0_purge_docker && \
 > ./4_create_docker_containers && \
 > ./5_create_content && \
 > ./6_docker_update
- ```
+```
  * Interact with applications using ports 9000-9004
 
 ## Updating the system
 
 Since 18.10 is no longer supported, the system can only be downgraded to 18.04 before updating to 20.04.
+
+ * Stop all containers
 
  * Update source list (replace cosmic with bionic info)
 ```shell
@@ -58,6 +60,9 @@ Updated to Docker version 19.03.8. GitLab got unhealthy, however restarting the 
 All files in other containers were preserved.
 
  * Update
+
+Change `prompt=lts` in `/etc/update-manager/release-upgrades` if needed.
+
 ```shell
 $ rm /etc/apt/preferences
 $ sudo apt-get install update-manager-core
@@ -66,3 +71,17 @@ $ do-release-upgrade [-d]
 ```
 
 Use `-d` if upgrading before the first patch release (July).
+
+ * Update docker containers (script 7)
+
+```shell
+$ ./7_update_docker_containers
+```
+
+ * Start all containers
+
+ * Cleaning
+```shell
+$ sudo apt-get autoremove
+$ docker system prune -a [--force]
+```
