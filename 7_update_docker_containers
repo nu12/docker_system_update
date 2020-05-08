@@ -1,0 +1,21 @@
+#!/bin/bash
+
+R_PATH=~/docker_system_update/resources/to
+
+cd $R_PATH/rstudio
+docker-compose up -d
+
+cd $R_PATH/jupyter
+docker-compose up -d
+
+cd $R_PATH/portainer
+docker-compose up -d
+
+cd $R_PATH/gitlab
+docker-compose up -d
+
+cd $R_PATH/postgres
+docker-compose up -d
+
+cd $R_PATH/pgadmin
+docker-compose up -d
