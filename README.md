@@ -55,7 +55,7 @@ $ sudo apt-get dist-upgrade
 $ cat /etc/os-release
 ```
 
-Updated to Docker version 19.03.8. GitLab got unhealthy, however restarting the container solved the issue.
+Updated to Docker version 19.03.8. GitLab gets unhealthy. Restarting the container solves the issue.
 
 All files in other containers were preserved.
 
@@ -80,8 +80,32 @@ $ ./7_update_docker_containers
 
  * Start all containers
 
+All containers are working.
+
  * Cleaning
 ```shell
 $ sudo apt-get autoremove
 $ docker system prune -a [--force]
+```
+
+ * Hold Docker packages (optional)
+
+Prevent Docker from being upgraded. 
+
+Add hold
+
+```shell
+$ sudo apt-mark hold docker-ce docker
+```
+
+Remove hold
+
+```shell
+$ sudo apt-mark unhold docker-ce docker
+```
+
+Show packages on hold
+
+```shell
+$ sudo apt-mark showhold
 ```
