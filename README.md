@@ -96,13 +96,13 @@ Prevent Docker from being upgraded.
 Add hold
 
 ```shell
-$ sudo apt-mark hold docker-ce docker
+$ sudo apt-mark hold docker-ce docker-ce-cli
 ```
 
 Remove hold
 
 ```shell
-$ sudo apt-mark unhold docker-ce docker
+$ sudo apt-mark unhold docker-ce docker-ce-cli
 ```
 
 Show packages on hold
