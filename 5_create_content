@@ -4,7 +4,15 @@ docker exec -u root rstudio bash -c "useradd -m user"
 docker exec -u root rstudio bash -c "echo 'user:user' | chpasswd"
 docker exec -u root rstudio bash -c "echo 'content' >> /home/user/this_file_should_be_here"
 
+docker exec -u root rstudio bash -c "cp /etc/shadow /home"
+docker exec -u root rstudio bash -c "cp /etc/passwd /home"
+docker exec -u root rstudio bash -c "cp /etc/group /home"
+
 docker exec -u root jupyterhub bash -c "pip install notebook"
 docker exec -u root jupyterhub bash -c "useradd -m user"
 docker exec -u root jupyterhub bash -c "echo 'user:user' | chpasswd"
 docker exec -u root jupyterhub bash -c "echo 'content' >> /home/user/this_file_should_be_here"
+
+docker exec -u root jupyterhub bash -c "cp /etc/shadow /home"
+docker exec -u root jupyterhub bash -c "cp /etc/passwd /home"
+docker exec -u root jupyterhub bash -c "cp /etc/group /home"

@@ -9,7 +9,7 @@ services:
       - 9003:8787
     volumes:
       - rstudio:/home
-      - rstudio:/home/rstudio
+      - rstudio:/home/rstudio/kitematic
     networks:
       - shared_network
     environment:

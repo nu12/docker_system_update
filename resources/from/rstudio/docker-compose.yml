@@ -9,7 +9,6 @@ services:
       - 9003:8787
     volumes:
       - rstudio:/home
-      - rstudio:/home/rstudio
     networks:
       - shared_network
     environment:

@@ -40,17 +40,18 @@ $ sudo sed -i 's/old-releases/archive/g' /etc/apt/sources.list
 ```
 
  * Pin packages
-```shell
-$ sudo echo -e "Package: * \n \
-> Pin: release a=bionic \n \
-> Pin-Priority: 1001" >> /etc/apt/preferences
+
+Write the following to `/etc/apt/preferences`
+```
+Package: *
+Pin: release a=bionic
+Pin-Priority: 1001
 ```
 
  * Downgrade
 ```shell
 $ sudo apt-get update
 $ sudo apt-get upgrade
-$ sudo apt-get install libnet-dns-sec-perl
 $ sudo apt-get dist-upgrade
 $ cat /etc/os-release
 ```
@@ -64,7 +65,7 @@ All files in other containers were preserved.
 Change `prompt=lts` in `/etc/update-manager/release-upgrades` if needed.
 
 ```shell
-$ rm /etc/apt/preferences
+$ sudo rm /etc/apt/preferences
 $ sudo apt-get install update-manager-core
 $ sudo apt-get install --reinstall ubuntu-keyring
 $ do-release-upgrade [-d]
