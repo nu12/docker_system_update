@@ -73,6 +73,13 @@ $ do-release-upgrade [-d]
 
 Use `-d` if upgrading before the first patch release (July).
 
+ * Update docker-compose
+
+```shell
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+```
+
  * Update docker containers (script 7)
 
 ```shell
