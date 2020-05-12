@@ -5,13 +5,13 @@ services:
     image: gitlab/gitlab-ce:12.4.3-ce.0
     container_name: gitlab
     restart: unless-stopped
-    hostname: gitlab.example.com    
+    hostname: git.nu12.xyz    
     volumes:
       - gitlab_config:/etc/gitlab
       - gitlab_logs:/var/log/gitlab
       - gitlab_data:/var/opt/gitlab
     environment: 
-      VIRTUAL_HOST: 192.168.56.106
+      VIRTUAL_HOST: git.nu12.xyz
     networks:
       - shared_network
 
