@@ -8,6 +8,14 @@ Steps to reproduce and update a docker host for testing purposes.
 
 If the version isn't supported any longer, replace repository source from `http://archive.ubuntu.com/ubuntu` to `http://old-releases.ubuntu.com/ubuntu` ([source](https://superuser.com/questions/1527250/apt-update-error-with-ubuntu-18-10-cosmic-version)).
 
+ * Create self-signed SSL and store it in `/etc/ssl/certs_path`
+
+```shell
+$ sudo mkdir -p /etc/ssl/certs_path/
+$ sudo openssl genpkey -algorithm rsa -pkeyopt rsa_keygen_bits:2048 -out /etc/ssl/certs_path/my_cert.key
+$ sudo openssl req -x509 -key /etc/ssl/certs_path/my_cert.key -out /etc/ssl/certs_path/my_cert.crt -days 720 -addext "subjectAltName = DNS:localhost,DNS:*.localhost,IP:192.168.56.106"
+```
+
  * Clone this repository
 
 ```bash
