@@ -11,6 +11,9 @@ docker-compose up -d
 cd $R_PATH/portainer
 docker-compose up -d
 
+cd $R_PATH/nginx
+docker-compose up -d
+
 cd $R_PATH/gitlab
 docker-compose up -d
 
