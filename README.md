@@ -13,7 +13,7 @@ If the version isn't supported any longer, replace repository source from `http:
 ```shell
 $ sudo mkdir -p /etc/ssl/certs_path/
 $ sudo openssl genpkey -algorithm rsa -pkeyopt rsa_keygen_bits:2048 -out /etc/ssl/certs_path/my_cert.key
-$ sudo openssl req -x509 -key /etc/ssl/certs_path/my_cert.key -out /etc/ssl/certs_path/my_cert.crt -days 720 -addext "subjectAltName = DNS:localhost,DNS:*.localhost,IP:192.168.56.106"
+$ sudo openssl req -x509 -key /etc/ssl/certs_path/my_cert.key -out /etc/ssl/certs_path/my_cert.crt -days 720 -addext "subjectAltName = DNS:breweryda.com,DNS:*.breweryda.com,IP:192.168.56.106"
 ```
 
  * Clone this repository
@@ -40,6 +40,15 @@ $ ./0_purge_docker && \
 Since 18.10 is no longer supported, the system can only be downgraded to 18.04 before updating to 20.04.
 
  * Stop all containers
+
+ * Backup Gitlab data
+
+```shell
+$ mkdir backup
+$ sudo cp -r /var/lib/docker/volumes/gitlab_data backup/gitlab_data
+$ sudo cp -r /var/lib/docker/volumes/gitlab_logs backup/gitlab_logs
+$ sudo cp -r /var/lib/docker/volumes/gitlab_config backup/gitlab_config
+```
 
  * Update source list (replace cosmic with bionic info)
 ```shell
