@@ -3,13 +3,9 @@ version: '2'
 services:
   gitlab:
     image: gitlab/gitlab-ce:12.10.3-ce.0
-    container_name: gitlab
+    container_name: git.breweryda.com
     restart: unless-stopped
-    hostname: gitlab.example.com
-    ports:
-      - '9001:80'
-      - '9081:443'
-      - '9082:22'
+    hostname: git.breweryda.com
     volumes:
       - gitlab_config:/etc/gitlab
       - gitlab_logs:/var/log/gitlab
@@ -27,4 +23,4 @@ volumes:
 
 networks:
   shared_network:
-    external: true
+    external: true  
