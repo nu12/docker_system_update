@@ -11,6 +11,7 @@ services:
       - /etc/ssl/certs_path:/certs_path:ro
     ports:
         - 80:80
+        - 443:443
     networks:
       - shared_network
 
