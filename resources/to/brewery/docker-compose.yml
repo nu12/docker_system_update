@@ -7,6 +7,9 @@ services:
     restart: unless-stopped
     hostname: git.breweryda.com
     environment:
+      VIRTUAL_HOST: git.breweryda.com
+      VIRTUAL_PROTO: https
+      VIRTUAL_PORT: 443
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://git.breweryda.com'
         nginx['redirect_http_to_https'] = true
@@ -22,12 +25,12 @@ services:
       - shared_network
 
   nginx:
-    image: nginx:1.17.10
+    image: jwilder/nginx-proxy:latest
     container_name: nginx
-    restart: unless-stopped 
-    volumes: 
-      - ./conf.d:/etc/nginx/conf.d:ro
-      - /etc/ssl/certs_path:/certs_path:ro
+    restart: unless-stopped
+    volumes:
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+        - /etc/ssl/certs_path:/etc/nginx/certs
     ports:
         - 80:80
         - 443:443
