@@ -21,12 +21,46 @@ services:
     networks:
       - shared_network
 
+  nginx:
+    image: nginx:1.17.10
+    container_name: nginx
+    restart: unless-stopped 
+    volumes: 
+      - ./conf.d:/etc/nginx/conf.d:ro
+      - /etc/ssl/certs_path:/certs_path:ro
+    ports:
+        - 80:80
+        - 443:443
+    networks:
+      - shared_network
+
+  portainer:
+    image: portainer/portainer:1.23.2
+    container_name: portainer
+    command: -H unix:///var/run/docker.sock
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+      - 8000:8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+      - /etc/ssl/certs_path:/certs
+    networks:
+      - shared_network
+    command: 
+      --ssl
+      --sslcert /certs/my_cert.crt
+      --sslkey /certs/my_cert.key
+
 volumes:
   gitlab_config:
     external: true
   gitlab_logs:
     external: true
   gitlab_data:
+    external: true
+  portainer_data:
     external: true
 
 networks:
